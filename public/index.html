@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head> 
+     <meta charset="UTF-8"> 
+     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+     <meta name="description" content="Personal budget application"> <!-- This is an SEO Change - Added meta tag to improve optimization--> 
+     <title>Personal Budget</title> <link rel="stylesheet" href="reset.css"> 
+     <link rel="stylesheet" href="main.css">
+ </head>
+ 
+ <body> 
+     <nav class="menu" role="navigation"> <!-- This is a Semantic HTML Change - changed from <div> to <nav> tag --> 
+          <ul type="none"> <!-- This is an A11y Change - Added aria-label for accessibility --> 
+               <li><a href="/" aria-label="Start Page">Homepage</a></li> 
+               <li><a href="/about.html" aria-label="Who We Are">About Us</a></li> 
+               <li><a href="/signin.html" aria-label="User Sign In">Sign In</a></li> 
+               <li><a href="https://google.com" aria-label="Google's Homepage">Visit Google</a></li> 
+          </ul> 
+     </nav>
+
+     <!-- This is an A11y Change -->
+     <header class="hero" role="banner"> <!-- This is a Semantic HTML Change - changed from <div> to <header> tag --> 
+          <h1>Personal Budget</h1> 
+          <h2>A personal-budget management app</h2> 
+     </header>
+     <div class="container center">
+          <div class="page-area">
+               <div class="text-box"> 
+                    <h2>Stay on track</h2> <!-- This is an SEO Change --> 
+                    <p> 
+                         Do you know where you are spending your money? If you really stop to track it down, 
+                         you would get surprised! Proper budget management depends on real data... and this app 
+                         will help you with that! 
+                    </p> 
+               </div> 
+               <div class="text-box"> 
+                    <h2>Alerts</h2> <!-- This is an SEO Change --> 
+                         <p> 
+                              What if your clothing budget ended? You will get an alert. The goal is to never go 
+                              over the budget. 
+                         </p> 
+                    </div> 
+               <div class="text-box"> 
+                    <h2>Results</h2> <!-- This is an SEO Change --> 
+                    <p> People who stick to a financial plan, budgeting every expense, get out of debt faster! 
+                         Also, they to live happier lives... since they expend without guilt or fear... because 
+                         they know it is all good and accounted for. 
+                    </p> 
+               </div> 
+               <div class="text-box"> 
+                    <h2>Free</h2> <!-- This is an SEO Change --> 
+                         <p> 
+                              This app is free!!! And you are the only one holding your data! 
+                         </p> 
+                    </div> 
+               <div class="text-box"> 
+                    <h2>Stay on track</h2> <!-- This is an SEO Change --> 
+                         <p> 
+                         Do you know where you are spending your money? If you really stop to track it down, you 
+                         would get surprised! Proper budget management depends on real data... and this app will 
+                         help you with that! 
+                    </p> 
+               </div> 
+               <div class="text-box"> 
+                    <h2>Alerts</h2> <!-- This is an SEO Change --> 
+                         <p> What if your clothing budget ended? You will get an alert. The goal is to never go 
+                              over the budget. 
+                         </p> 
+                    </div> 
+               <div class="text-box"> 
+                    <h2>Results</h2> <!-- This is an SEO Change --> 
+                    <p> People who stick to a financial plan, budgeting every expense, get out of debt faster! 
+                         Also, they to live happier lives... since they expend without guilt or fear... because 
+                         they know it is all good and accounted for. 
+                    </p> 
+               </div> 
+               <div class="text-box">
+                    <h1>Free</h1>
+                    <p>
+                         This app is free!!! And you are the only one holding your data!
+                    </p>
+               </div>
+
+               <div >
+                    <h1>Chart.js</h1>
+                    <p>
+                         <canvas id="myChart" width="288px", height="288px" style="margin: 5px;"></canvas>
+                    </p>
+               </div>
+          </div>
+        
+          <div >
+               <h1>D3.js</h1>
+                    <svg width="960px", height="650px" style="margin: 5px;"></svg>
+          </div>
+</div>
+
+    </main>
+
+    <div class="bottom">
+        <div class="center">
+            All rights reserved &copy; Nakshatra Reddy
+        </div>
+    </div>
+
+    <style>
+
+     svg {
+         width: 100%;
+         height: 100%;
+         align-items: center;
+         justify-items: center;
+     }
+     
+     path.slice{
+         stroke-width:2px;
+     }
+     
+     polyline{
+         opacity: .3;
+         stroke: black;
+         stroke-width: 1px;
+         fill: none;
+     }
+     </style>
+   
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.5.0/axios.min.js" integrity="sha512-aoTNnqZcT8B4AmeCFmiSnDlc4Nj/KPaZyB5G7JnOnUEkdNpCZs1LCankiYi01sLTyWy+m2P+W4XM+BuQ3Q4/Dg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.0/chart.min.js" integrity="sha512-7U4rRB8aGAHGVad3u2jiC7GA5/1YhQcQjxKeaVms/bT66i3LVBMRcBI9KwABNWnxOSwulkuSXxZLGuyfvo7V1A==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+   
+   <script>
+       
+       let data_p = {
+           data: [],
+           backgroundColor: [],
+           labels: []
+       };
+   
+       
+       function createChart() {
+           var ctx = document.getElementById('myChart').getContext('2d');
+           var myChart = new Chart(ctx, {
+               type: 'doughnut',
+               data: {
+                   labels: data_p.labels,
+                   datasets: [{
+                       label: 'Budget Data',
+                       data: data_p.data,
+                       backgroundColor: data_p.backgroundColor,
+                   }]
+               }
+           });
+       }
+   
+       // Chart.js data
+       function getBudget() {
+           axios.get('/postBudget')
+               .then((res) => {
+                   console.log(res.data)
+                   for (var i = 0; i < res.data.length; i++) {
+                       data_p.data.push(res.data[i].relatedValue);
+                       data_p.labels.push(res.data[i].title);
+                       data_p.backgroundColor.push(res.data[i].color);
+                   }
+                   createChart(); 
+               })
+       };
+       getBudget();
+   </script>
+   
+   <script>
+       // D3.js Data
+       const getData = async () => {
+           var r = await axios.get('/postBudget');
+           return r.data;
+       };
+   
+       // D3.js chart
+       const createD3Chart = async () => {
+   
+           var data = await getData();
+           const colors = data.map(postBudget => postBudget.color);
+   
+   // Set up the dimensions of the chart
+   const width = 400;
+   const height = 400;
+   const radius = Math.min(width, height) / 2;
+   
+   // Create a pie layout
+   const pie = d3.pie().value(d => d.relatedValue);
+   
+   // Create an arc generator
+   const arc = d3
+     .arc()
+     .innerRadius(0)
+     .outerRadius(radius);
+   
+   // Create an SVG element
+   const svg = d3
+     .select('#chart')
+     .append('svg')
+     .attr('width', width)
+     .attr('height', height)
+     .append('g')
+     .attr('transform', `translate(${width / 2},${height / 2})`);
+   
+   // Generate the pie chart
+   const arcs = svg
+     .selectAll('arc')
+     .data(pie(data))
+     .enter()
+     .append('g');
+   
+   arcs
+     .append('path')
+     .attr('d', arc)
+     .attr('fill', (d, i) => colors[i]);
+   
+   // Add labels
+   arcs
+     .append('text')
+     .attr('transform', d => `translate(${arc.centroid(d)})`)
+     .attr('text-anchor', 'middle')
+     .text(d => d.data.title);    }
+       createD3Chart();
+   </script>
+   </body>
+   </html>
